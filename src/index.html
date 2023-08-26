@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="content-container">
+        <div class="header">
+            <h1>To-Do List</h1>
+            <div class="menu">
+                <h2>Home</h2>
+                <div class="menu-options">
+                    <h4>General</h4>
+                    <h4>Uncompleted</h4>
+                    <h4>Completed</h4>
+                </div>
+                <h2>Projects</h2>
+                <div class="project-container"></div>
+            </div>
+        </div>
+        
+        <div class="main">
+            <h1 class="general">General</h1>
+            <h5>All your tasks</h5>
+            
+            <div class="add-task-container">
+                <button class="add-task">+ New Task</button>
+            </div>
+            
+            <div class="modal-container"></div>
+
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2>Create ToDo</h2>
+                        <button class="close-modal">X</button>
+                    </div>
+                    <form class="modal-form">
+                        <label for="Title">Title</label><br>
+                        <input type="text" id="Title" name="Title"><br>
+                        
+                        <label for="Date">Date</label><br>
+                        <input type="date" id="Date" name="Date"><br>
+                        
+                        <div class="priority">
+                        <label for="Priority">Priority</label>
+                        <input type="checkbox" id="Priority" name="Priority">
+                        </div>
+                    </form>
+                    <button class="create-button">Create</button>
+
+                </div>
+
+            
+            
+            <div class="todo-container"></div>
+        </div>
+    </div>
+    <script type="module" src="./js/components/index.js"></script>
+</body>
+</html>
