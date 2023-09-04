@@ -1,8 +1,8 @@
 class Project {
-    constructor(title, descrpition){
-        this.title = title
-        this.descrpition = descrpition
+    constructor(title, description) {
+        this.title = title;
+        this.description = description;
     }
 }
 
-export default Project ;
+export default Project;

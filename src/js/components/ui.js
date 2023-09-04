@@ -1,11 +1,22 @@
 import {createTodo} from './model.js'
+import { createTask } from './tasks.js';
 
 
+let taskIdCounter = 0;
+let tasksContainer;
 
 function initializeUI(){
+    tasksContainer = document.querySelector('.tasks-container');
+
     const addButton = document.querySelector('.add-task')
     addButton.addEventListener('click',handleAddTodo)
-    
+
+    const createButton = document.querySelector('.create-button')
+    createButton.addEventListener('click',createTask)
+
+    const generalButton = document.querySelector('.general-button')
+    const uncompletedButton = document.querySelector('.uncompleted-button')
+    const completedButton = document.querySelector('.completed-button')
 }
 
 function handleAddTodo(){
@@ -37,5 +48,7 @@ function closeModal(){
 
     console.log(modalBackground.classList.contains('show'));
 }
+
+export {closeModal};
 
 export {initializeUI} ;

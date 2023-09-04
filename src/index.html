@@ -9,13 +9,14 @@
 <body>
     <div class="content-container">
         <div class="header">
-            <h1>To-Do List</h1>
+            <h1>To-Do List<hr></h1>
+
             <div class="menu">
                 <h2>Home</h2>
                 <div class="menu-options">
-                    <h4>General</h4>
-                    <h4>Uncompleted</h4>
-                    <h4>Completed</h4>
+                    <button class="general-button">General</button>
+                    <button class="uncompleted-button">Uncompleted</button>
+                    <button class="completed-button">Completed</button>
                 </div>
                 <h2>Projects</h2>
                 <div class="project-container"></div>
@@ -24,13 +25,23 @@
         
         <div class="main">
             <h1 class="general">General</h1>
-            <h5>All your tasks</h5>
+            <h4>All your tasks</h4>
             
             <div class="add-task-container">
                 <button class="add-task">+ New Task</button>
             </div>
+            <div class="line"></div>
+            <div class="tasks-container">
+                <div class="priority-circle"></div>
+            </div>
+
             
-            <div class="modal-container"></div>
+
+            
+            
+            <div class="todo-container"></div>
+        </div>
+        <div class="modal-container"></div>
 
                 <div class="modal">
                     <div class="modal-header">
@@ -39,10 +50,10 @@
                     </div>
                     <form class="modal-form">
                         <label for="Title">Title</label><br>
-                        <input type="text" id="Title" name="Title"><br>
+                        <input type="text" id="Title" name="Title" required> <br>
                         
                         <label for="Date">Date</label><br>
-                        <input type="date" id="Date" name="Date"><br>
+                        <input type="date" id="Date" name="Date" required><br>
                         
                         <div class="priority">
                         <label for="Priority">Priority</label>
@@ -52,12 +63,8 @@
                     <button class="create-button">Create</button>
 
                 </div>
-
-            
-            
-            <div class="todo-container"></div>
-        </div>
     </div>
+    
     <script type="module" src="./js/components/index.js"></script>
 </body>
 </html>
