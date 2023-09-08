@@ -1,23 +1,50 @@
 import {createTodo} from './model.js'
 import { createTask } from './tasks.js';
+import { filterTasks } from './tasks.js';
 
 
 let taskIdCounter = 0;
 let tasksContainer;
 
-function initializeUI(){
+function initializeUI() {
     tasksContainer = document.querySelector('.tasks-container');
 
-    const addButton = document.querySelector('.add-task')
-    addButton.addEventListener('click',handleAddTodo)
+    const pageTitle = document.querySelector('.general')
 
-    const createButton = document.querySelector('.create-button')
-    createButton.addEventListener('click',createTask)
+    const addButton = document.querySelector('.add-task');
+    addButton.addEventListener('click', handleAddTodo);
 
-    const generalButton = document.querySelector('.general-button')
-    const uncompletedButton = document.querySelector('.uncompleted-button')
-    const completedButton = document.querySelector('.completed-button')
+    const createButton = document.querySelector('.create-button');
+    createButton.addEventListener('click', createTask);
+
+    
+
+    // Select the Filter Buttons
+    const generalButton = document.querySelector('.general-button');
+    const completedButton = document.querySelector('.completed-button');
+    const uncompletedButton = document.querySelector('.uncompleted-button');
+
+    generalButton.addEventListener('click', () => {
+        // Show all tasks, regardless of completion status
+        filterTasks(null);
+        pageTitle.textContent = 'General';
+    });
+
+    completedButton.addEventListener('click', () => {
+        // Show completed tasks
+        filterTasks(true);
+        pageTitle.textContent = 'High Prio';
+    });
+
+    uncompletedButton.addEventListener('click', () => {
+        // Show uncompleted tasks
+        filterTasks(false);
+        pageTitle.textContent = 'Low Prio';
+    });
 }
+
+
+
 
 function handleAddTodo(){
 openModal()

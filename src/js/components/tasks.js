@@ -4,21 +4,26 @@ let taskIdCounter = 0;
 let tasksContainer;
 
 function createTask(){
-     tasksContainer = document.querySelector('.tasks-container');
+    tasksContainer = document.querySelector('.tasks-container');
     const modalTitle = document.querySelector('#Title').value;
     const modalDate = document.querySelector('#Date').value;
     const modalPriority = document.querySelector('#Priority').checked;
 
+    // Creates the card where the information will be displayed
+
     var taskContainer = document.createElement('div');
     taskContainer.classList.add('task-card');
     taskContainer.dataset.taskId = taskIdCounter; // Assign a unique identifier
+    taskContainer.dataset.completed = false;
 
     const title = document.createElement('h2');
     title.textContent = modalTitle;
     taskContainer.appendChild(title);
 
     const cardButton = document.createElement('div');
-    cardButton.classList.add('card-buttons'); // Apply flex styling to this div
+    cardButton.classList.add('card-buttons'); 
+
+    //If a Date is given apply it to the card
 
     if (modalDate) {
         const taskDate = new Date(modalDate);
@@ -26,7 +31,7 @@ function createTask(){
 
         const date = document.createElement('date');
         date.textContent = formattedDate;
-        cardButton.appendChild(date); // Append date to the cardButton div
+        cardButton.appendChild(date); 
     }
 
     // Create the priority circle and set its initial color
@@ -35,24 +40,46 @@ function createTask(){
     updatePriorityCircleColor(priorityCircle, modalPriority);
 
     priorityCircle.addEventListener('click', togglePriority);
-    cardButton.appendChild(priorityCircle); // Append priorityCircle to the cardButton div
+    cardButton.appendChild(priorityCircle); 
 
+   
+    taskContainer.dataset.completed = !modalPriority;
+
+    //Creates the delete button and adds functionality
     const deleteImage = document.createElement('img');
-    deleteImage.src = 'delete.png'; // Update with the correct path to your delete.png image
+    deleteImage.src = 'delete.png'; // Update with the correct path to delete.png image
     deleteImage.alt = 'Delete';
     deleteImage.addEventListener('click', () => deleteTask(taskContainer));
-    cardButton.appendChild(deleteImage); // Append deleteImage to the cardButton div
+    cardButton.appendChild(deleteImage); 
 
-    taskContainer.appendChild(cardButton); // Append cardButton to the taskContainer
+    taskContainer.appendChild(cardButton); 
 
     tasksContainer.appendChild(taskContainer);
 
+    //Increases the ID by 1 for each task to avoid duplicates and closes the Modal
     taskIdCounter++;
     closeModal();
 }
 
 function deleteTask(taskCard) {
     tasksContainer.removeChild(taskCard);
+}
+
+function filterTasks(showCompleted) {
+    const taskCards = document.querySelectorAll('.task-card');
+
+   
+    taskCards.forEach((taskCard) => {
+        const isCompleted = taskCard.dataset.completed === 'true';
+
+        console.log(`Task ID ${taskCard.dataset.taskId}: isCompleted = ${isCompleted}`);
+
+        if (showCompleted === null || showCompleted === isCompleted) {
+            taskCard.style.display = 'block';
+        } else {
+            taskCard.style.display = 'none';
+        }
+    });
 }
 
 function togglePriority(event) {
@@ -72,4 +99,4 @@ function updatePriorityCircleColor(circleElement, isHighPriority) {
     circleElement.classList.add(isHighPriority ? 'priority-high' : 'priority-low');
 }
 
-export { createTask, deleteTask, togglePriority, updatePriorityCircleColor };
+export { createTask, deleteTask, togglePriority, updatePriorityCircleColor, filterTasks };
